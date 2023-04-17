@@ -1,0 +1,29 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net6.0</TargetFramework>
+    <GenerateDocumentationFile>true</GenerateDocumentationFile>
+    <AssemblyTitle>FsOptics.Core</AssemblyTitle>
+    <Description>Lenses/Prisms/Traversals/etc. for FSharp.Data.JsonValue types</Description>
+    <PackageTags>F#;optics;lens;json</PackageTags>
+    <Authors>David Smith</Authors>
+    <RepositoryUrl>https://github.com/divisionsinc/fsoptics</RepositoryUrl>
+    <!--<PackageLicenseFile>LICENSE</PackageLicenseFile>
+    <PackageReadmeFile>README.md</PackageReadmeFile>-->
+    <PackageVersion>$(FSOPTICS_VERSION)$(VersionSuffix)</PackageVersion>
+  </PropertyGroup>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Include="Library.fs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\FsOptics.Core\FsOptics.Core.fsproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="FSharp.Data" Version="5.0.2" />
+  </ItemGroup>
+
+</Project>
