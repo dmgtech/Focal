@@ -7,19 +7,21 @@
     <Description>Lenses/Prisms/Traversals/etc. for FSharp.Data.JsonValue types</Description>
     <PackageTags>F#;optics;lens;json</PackageTags>
     <Authors>David Smith</Authors>
-    <RepositoryUrl>https://github.com/divisionsinc/fsoptics</RepositoryUrl>
-    <!--<PackageLicenseFile>LICENSE</PackageLicenseFile>
-    <PackageReadmeFile>README.md</PackageReadmeFile>-->
+    <RepositoryUrl>https://github.com/dmgtech/fsoptics</RepositoryUrl>
+    <PackageLicenseFile>LICENSE</PackageLicenseFile>
+    <PackageReadmeFile>README.md</PackageReadmeFile>
+    <IncludeContentInPack>true</IncludeContentInPack>
     <PackageVersion>$(FSOPTICS_VERSION)$(VersionSuffix)</PackageVersion>
-  </PropertyGroup>
   </PropertyGroup>
 
   <ItemGroup>
     <Compile Include="Library.fs" />
+    <None Include="../LICENSE" Pack="true" PackagePath="." />
+    <None Include="../README.md" Pack="true" PackagePath="." />
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\FsOptics.Core\FsOptics.Core.fsproj" />
+    <ProjectReference Include="../FsOptics.Core/FsOptics.Core.fsproj" />
   </ItemGroup>
 
   <ItemGroup>

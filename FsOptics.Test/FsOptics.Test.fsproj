@@ -27,7 +27,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\FsOptics.Core\FsOptics.Core.fsproj" />
+    <ProjectReference Include="../FsOptics.Core/FsOptics.Core.fsproj" />
   </ItemGroup>
 
 </Project>
