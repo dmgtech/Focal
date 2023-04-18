@@ -347,3 +347,11 @@ type OpticsExtensions =
     [<Extension>]
     static member inline Exists(fold: IFold<'s,'a>) =
         fun x -> x |> fold.ToSeq |> Seq.exists(fun _ -> true)
+
+    [<Extension>]
+    static member inline TryHead(fold : IFold<_,_>, x) =
+        Seq.tryHead << fold.ToSeq
+
+    [<Extension>]
+    static member inline HeadOrDefault(fold : IFold<_,_>, x) =
+        Option.defaultValue x << Seq.tryHead << fold.ToSeq
