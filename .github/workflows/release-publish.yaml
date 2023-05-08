@@ -1,0 +1,76 @@
+name: dotnet package
+
+on:
+  push:
+    tags: [v*.*]
+
+#jobs:
+#  build-and-publish-nuget:
+#    runs-on: ubuntu-latest
+#    strategy:
+#      matrix:
+#        dotnet-version: ['6.0.x']
+#    steps:
+#      - name: Checkout
+#        uses: actions/checkout@v2
+#      - name: Setup .NET Core SDK ${{ matrix.dotnet-version }}
+#        uses: actions/setup-dotnet@v2.0.0
+#        with:
+#          dotnet-version: ${{ matrix.dotnet-version }}
+#      - name: Display version
+#        run: dotnet --version
+#      - name: Restore dependencies
+#        run: dotnet restore
+#      - name: Build FsOptics.Core NuGet package
+#        run: dotnet pack -c Release FsOptics.Core
+#      - name: Publish NuGet package
+#        uses: nuget/action@v1
+#        with:
+#          command: 'push'
+#          packages: '*.nupkg'
+#          nuget-api-key: ${{ secrets.FSOPTICS_NUGET_API_KEY }}
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        dotnet-version: ['6.0.x']
+    defaults:
+      run:
+        working-directory: ./
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+      - name: Setup .NET Core SDK ${{ matrix.dotnet-version }}
+        uses: actions/setup-dotnet@v2.0.0
+        with:
+          dotnet-version: ${{ matrix.dotnet-version }}
+      - name: Display version
+        run: dotnet --version
+      - name: Install dependencies
+        run: dotnet restore FsOptics.Core
+      - name: Build
+        run: dotnet build FsOptics.Core --configuration Release --no-restore
+      - name: Publish
+        env:
+          FSOPTICS_VERSION: ${{github.ref_name}}
+        run: dotnet publish -p:FSOPTICS_VERSION=${FSOPTICS_VERSION#v} --no-restore --no-build --configuration Release
+      - name: Zip
+        run: (cd bin/Release/net6.0/publish && zip -r ../FsOptics.zip .)
+      - name: Package
+        env:
+          FSOPTICS_VERSION: ${{github.ref_name}}
+        run: dotnet pack -p:FSOPTICS_VERSION=${FSOPTICS_VERSION#v} --no-restore --no-build --configuration Release
+      - name: Nuget Push
+        env:
+          FSOPTICS_VERSION: ${{github.ref_name}}
+          NUGET_API_KEY: ${{ secrets.NUGET_API_KEY }}
+        run: dotnet nuget push ./FsOptics.Core/bin/Release/FsOptics.${FSOPTICS_VERSION#v}.nupkg --api-key "$FSOPTICS_NUGET_API_KEY" --source https://api.nuget.org/v3/index.json --skip-duplicate
+      - name: GitHubRelease
+        uses: softprops/action-gh-release@v1
+        if: startsWith(github.ref, 'refs/tags/')
+        with:
+          files: ./FsOptics.Core/bin/Release/FsOptics.$($env:GITHUB_REF -replace "refs/tags/").nupkg
+      
+
