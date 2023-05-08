@@ -3,33 +3,6 @@ name: dotnet package
 on:
   push:
     tags: [v*.*]
-
-#jobs:
-#  build-and-publish-nuget:
-#    runs-on: ubuntu-latest
-#    strategy:
-#      matrix:
-#        dotnet-version: ['6.0.x']
-#    steps:
-#      - name: Checkout
-#        uses: actions/checkout@v2
-#      - name: Setup .NET Core SDK ${{ matrix.dotnet-version }}
-#        uses: actions/setup-dotnet@v2.0.0
-#        with:
-#          dotnet-version: ${{ matrix.dotnet-version }}
-#      - name: Display version
-#        run: dotnet --version
-#      - name: Restore dependencies
-#        run: dotnet restore
-#      - name: Build FsOptics.Core NuGet package
-#        run: dotnet pack -c Release FsOptics.Core
-#      - name: Publish NuGet package
-#        uses: nuget/action@v1
-#        with:
-#          command: 'push'
-#          packages: '*.nupkg'
-#          nuget-api-key: ${{ secrets.FSOPTICS_NUGET_API_KEY }}
-
 jobs:
   build:
     runs-on: ubuntu-latest
