@@ -1,4 +1,4 @@
-# FsOptics
+# Focal
 Lenses/Prisms/Traversals/etc. with an emphasis on usability in the F# programming environment
 
 
@@ -39,5 +39,5 @@ classDiagram
 ## Design Goals
 The purpose of this project is to create an optics library that fits as well as possible into idiomatic F# code.  This is largely accomplished by a combination of an explicitly defined interface hierarchy for the main optics types, and complimented by extension methods to allow for composing optics using a Fluent-like interface.  The instances of said interfaces are implemented as records of matching fuctions.  This is a large departure from the [lens](https://hackage.haskell.org/package/lens) or [optics](https://github.com/well-typed/optics) libraries in Haskell, which rely on a much more powerful type system (and thus are capable of expressing far more that can be done within the confines of the F# type system).
 
-That said, it is still possible to create very useful optics expressions, especially when paired with recursive type structures (as seen in FsOptics.Json) or code generation (as is done in FsGrpc). 
+That said, it is still possible to create very useful optics expressions, especially when paired with recursive type structures (as seen in Focal.Json) or code generation (as is done in FsGrpc). 
 

@@ -2,7 +2,7 @@ module Tests
 
 open System
 open Xunit
-open FsOptics.Core
+open Focal.Core
 
 [<Fact>]
 let ``Get-Put Lens Law`` () =

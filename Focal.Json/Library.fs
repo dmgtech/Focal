@@ -1,6 +1,6 @@
-﻿module FsOptics.Json 
+﻿module Focal.Json 
 
-open FsOptics.Core
+open Focal.Core
 open FSharp.Data
 
 let jsonRecordPrism : Prism<_,_,_,_> =

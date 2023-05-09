@@ -1,4 +1,4 @@
-﻿module FsOptics.Core
+﻿module Focal.Core
 
 open FSharp.Core
 open FSharp.Collections
