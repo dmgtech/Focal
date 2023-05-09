@@ -29,15 +29,15 @@ jobs:
         run: dotnet test Focal.Test
       - name: Package Focal.Core
         env:
-          FSOPTICS_VERSION: ${{github.ref_name}}
-        run: dotnet pack Focal.Core -p:FSOPTICS_VERSION=${FSOPTICS_VERSION#v} --configuration Release -o .
+          FOCAL_VERSION: ${{github.ref_name}}
+        run: dotnet pack Focal.Core -p:FOCAL_VERSION=${FOCAL_VERSION#v} --configuration Release -o .
       - name: Package Focal.Json
         env:
-          FSOPTICS_VERSION: ${{github.ref_name}}
-        run: dotnet pack Focal.Json -p:FSOPTICS_VERSION=${FSOPTICS_VERSION#v} --configuration Release -o .
+          FOCAL_VERSION: ${{github.ref_name}}
+        run: dotnet pack Focal.Json -p:FOCAL_VERSION=${FOCAL_VERSION#v} --configuration Release -o .
       - name: Nuget Push
         env:
-          FSOPTICS_VERSION: ${{github.ref_name}}
+          FOCAL_VERSION: ${{github.ref_name}}
           NUGET_API_KEY: ${{ secrets.NUGET_API_KEY }}
         run: dotnet nuget push *.nupkg --api-key "$NUGET_API_KEY" --source https://api.nuget.org/v3/index.json --skip-duplicate
       - name: GitHubRelease

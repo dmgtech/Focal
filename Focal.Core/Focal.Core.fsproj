@@ -7,11 +7,11 @@
     <Description>Lenses/Prisms/Traversals/etc. with an emphasis on usability in the F# programming environment</Description>
     <PackageTags>F#;optics;lens;</PackageTags>
     <Authors>David Smith</Authors>
-    <RepositoryUrl>https://github.com/dmgtech/fsoptics</RepositoryUrl>
+    <RepositoryUrl>https://github.com/dmgtech/focal</RepositoryUrl>
     <PackageLicenseFile>LICENSE</PackageLicenseFile>
     <PackageReadmeFile>README.md</PackageReadmeFile>
     <IncludeContentInPack>true</IncludeContentInPack>
-    <PackageVersion>$(FSOPTICS_VERSION)$(VersionSuffix)</PackageVersion>
+    <PackageVersion>$(FOCAL_VERSION)$(VersionSuffix)</PackageVersion>
   </PropertyGroup>
 
   <ItemGroup>
