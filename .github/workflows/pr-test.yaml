@@ -24,8 +24,8 @@ jobs:
       - name: Display version
         run: dotnet --version
       - name: Build Focal.Core
-        run: dotnet build -p:TargetFramework=net${{ matrix.dotnet }} Focal.Core --configuration Release
+        run: dotnet build -p:TargetFramework=net${{ matrix.dotnet-version }} Focal.Core --configuration Release
       - name: Build Focal.Json
-        run: dotnet build -p:TargetFramework=net${{ matrix.dotnet }} Focal.Json --configuration Release
+        run: dotnet build -p:TargetFramework=net${{ matrix.dotnet-version }} Focal.Json --configuration Release
       - name: Run Tests
-        run: dotnet test -p:TargetFramework=net${{ matrix.dotnet }} Focal.Test --configuration Release
+        run: dotnet test -p:TargetFramework=net${{ matrix.dotnet-version }} Focal.Test --configuration Release
