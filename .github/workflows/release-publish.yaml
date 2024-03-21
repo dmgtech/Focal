@@ -26,7 +26,7 @@ jobs:
       - name: Build Focal.Json
         run: dotnet build Focal.Json --configuration Release
       - name: Run Tests
-        run: dotnet test Focal.Test
+        run: dotnet test Focal.Test --configuration Release
       - name: Package Focal.Core
         env:
           FOCAL_VERSION: ${{github.ref_name}}
