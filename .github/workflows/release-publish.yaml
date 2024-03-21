@@ -8,7 +8,7 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        dotnet-version: ['6.0.x', '8.0.x']
+        dotnet-version: ['6.0', '8.0']
     defaults:
       run:
         working-directory: ./
@@ -18,7 +18,9 @@ jobs:
       - name: Setup .NET Core SDK ${{ matrix.dotnet-version }}
         uses: actions/setup-dotnet@v2.0.0
         with:
-          dotnet-version: ${{ matrix.dotnet-version }}
+          dotnet-version: |
+            6.0.x
+            8.0.x
       - name: Display version
         run: dotnet --version
       - name: Build Focal.Core
@@ -26,7 +28,7 @@ jobs:
       - name: Build Focal.Json
         run: dotnet build Focal.Json --configuration Release
       - name: Run Tests
-        run: dotnet test Focal.Test --configuration Release
+        run: dotnet test Focal.Test -p:TargetFramework=net${{ matrix.dotnet-version }} --configuration Release
       - name: Package Focal.Core
         env:
           FOCAL_VERSION: ${{github.ref_name}}
