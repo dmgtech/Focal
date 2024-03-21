@@ -1,0 +1,31 @@
+name: dotnet package
+
+on:
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        dotnet-version: ['6.0.x', '8.0.x']
+    defaults:
+      run:
+        working-directory: ./
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+      - name: Setup .NET Core SDK ${{ matrix.dotnet-version }}
+        uses: actions/setup-dotnet@v2.0.0
+        with:
+          dotnet-version: ${{ matrix.dotnet-version }}
+      - name: Display version
+        run: dotnet --version
+      - name: Build Focal.Core
+        run: dotnet build Focal.Core --configuration Release
+      - name: Build Focal.Json
+        run: dotnet build Focal.Json --configuration Release
+      - name: Run Tests
+        run: dotnet test Focal.Test --configuration Release
